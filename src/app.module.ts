@@ -1,22 +1,15 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
-import { ClientsModule, Transport } from "@nestjs/microservices";
 import { AuthModule } from "./auth/auth.module";
 import { VocabularyModule } from "./vocabulary/vocabulary.module";
+import authRabbitmqConfig from "./config/auth.rabbitmq.config";
+import vocabularyRabbitmqConfig from "./config/vocabulary.rabbitmq.config";
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    ClientsModule.register([
-      {
-        name: "AUTH",
-        transport: Transport.RMQ,
-        options: {
-          urls: ["amqp://admin:admin@localhost:5672"],
-          queue: "auth_queue",
-        },
-      },
-    ]),
+    ConfigModule.forRoot({
+      load: [authRabbitmqConfig, vocabularyRabbitmqConfig],
+    }),
     AuthModule,
     VocabularyModule,
   ],
