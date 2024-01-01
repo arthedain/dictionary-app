@@ -4,6 +4,7 @@ import { AuthModule } from "./auth/auth.module";
 import { VocabularyModule } from "./vocabulary/vocabulary.module";
 import authRabbitmqConfig from "./config/auth.rabbitmq.config";
 import vocabularyRabbitmqConfig from "./config/vocabulary.rabbitmq.config";
+import { UserModule } from "./user/user.module";
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import vocabularyRabbitmqConfig from "./config/vocabulary.rabbitmq.config";
     }),
     AuthModule,
     VocabularyModule,
+    UserModule,
   ],
 })
 export class AppModule {}

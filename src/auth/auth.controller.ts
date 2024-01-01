@@ -5,6 +5,7 @@ import {
   Headers,
   Get,
   UseGuards,
+  Header,
 } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { RegistrationDto } from "./dto/registration.dto";
